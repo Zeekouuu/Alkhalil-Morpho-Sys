@@ -39,7 +39,10 @@ public class souarController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-
+	@GetMapping("/search")
+	public List<souar> searchSouar(@RequestParam("query") String query) {
+		return souarRepo.findByNomContainingIgnoreCase(query);
+	}
 	@GetMapping("/makki-madani/{MakkiMadani}")
 	public ResponseEntity<List<souar>> getEntitiesByMakkiMadani(@PathVariable String MakkiMadani) {
 		List<souar> entities = souarRepo.findByMakkiMadani(MakkiMadani);
@@ -54,4 +57,5 @@ public class souarController {
 		List<souar> entities = souarRepo.findAll();
 		return ResponseEntity.ok(entities);
 	}
+
 }

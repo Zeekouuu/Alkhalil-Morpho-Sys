@@ -1,5 +1,6 @@
 package com.tafssir.tafssir.controller;
 
+import com.tafssir.tafssir.model.souar;
 import com.tafssir.tafssir.model.tafassir;
 import com.tafssir.tafssir.repository.tafassirRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,10 @@ public class tafassirController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+	@GetMapping("/search")
+	public List<tafassir> searchTafassir(@RequestParam("query") String query) {
+		return tafassirRepo.findByNomContainingIgnoreCase(query);
 	}
 	@GetMapping
 	public ResponseEntity<List<tafassir>> getAllEntities() {

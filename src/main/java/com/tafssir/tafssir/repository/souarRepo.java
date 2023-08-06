@@ -7,6 +7,6 @@ public interface souarRepo extends JpaRepository<souar, Long> {
 	List<souar> findByNSoura(Integer nsoura);
 
 	List<souar> findByNom(String Nom);
-
+	List<souar> findByNomContainingIgnoreCase(String query);
 	List<souar> findByMakkiMadani(String MakkiMadani);
 }

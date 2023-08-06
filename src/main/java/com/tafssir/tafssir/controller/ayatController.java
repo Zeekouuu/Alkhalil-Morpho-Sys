@@ -36,12 +36,10 @@ public class ayatController {
 		}
 	}
 	@GetMapping("/nsoura/{nsoura}")
-	public ResponseEntity<List<ayat>> getEntitiesByNSoura(@PathVariable Integer nsoura) {
+	public  List<ayat> getEntitiesByNSoura(@PathVariable Integer nsoura) {
 		List<ayat> entities = ayatRepo.findByNSoura(nsoura);
-		if (!entities.isEmpty()) {
-			return ResponseEntity.ok(entities);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+
+			return entities;
+
 	}
 }

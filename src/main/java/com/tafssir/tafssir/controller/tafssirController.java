@@ -1,31 +1,31 @@
 package com.tafssir.tafssir.controller;
 
-import com.tafssir.tafssir.model.tafssir;
+import com.tafssir.tafssir.model.Tafssir;
+
 import com.tafssir.tafssir.repository.tafssirRepo;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.tafssir.tafssir.service.tafssirService;
+
 import java.util.List;
-import java.util.Optional;
+
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/entities/{tableName}")
+@RequestMapping("/Tafssir")
 public class tafssirController {
 
-	private final tafssirService tafssirService;
+	private final tafssirRepo tafssirService;
 
-	public tafssirController(tafssirService tafssirService) {
+	public tafssirController(tafssirRepo tafssirService) {
 		this.tafssirService = tafssirService;
 	}
 
-	@GetMapping
-	public List<tafssir> getAllEntities(@PathVariable String tableName) {
-		return tafssirService.getAllEntities(tableName);
+	@GetMapping (path = "all/{NTafsir}")
+	public List<Tafssir> getAllChihaja(@PathVariable Integer NTafsir){
+		List<Tafssir> kolch = tafssirService.findByAllDakci(NTafsir);
+		return kolch;
 	}
-
-	@GetMapping("/{id}")
-	public ResponseEntity<tafssir> getEntityById(@PathVariable Long id, @PathVariable String tableName) {
-		Optional<tafssir> entity = tafssirService.getEntityById(id, tableName);
-		return entity.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+	@GetMapping (path= "/getAllTafassir/{num}/{num2}")
+	public List<Tafssir> getAllTafassir(@PathVariable Integer num, @PathVariable Integer num2){
+		List<Tafssir> allData = tafssirService.findByAllTafssir2(num,num2);
+		return allData;
 	}
 }

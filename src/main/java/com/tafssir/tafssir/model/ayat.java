@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "ayat")
 public class ayat {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	//private Long id;
 	private Integer NAya;
 	private Integer NSoura;
@@ -18,14 +18,6 @@ public class ayat {
 	private Integer NHizb;
 	private Integer NPage;
 	private String makki_madani;
-
-	/*public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}*/
 
 	public Integer getNSoura() {
 		return NSoura;
